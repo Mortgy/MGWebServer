@@ -7,12 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502CBADF2C0C78290069A49D /* silent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 502CBADE2C0C78290069A49D /* silent.mp3 */; };
+		502CBAE12C0C82BC0069A49D /* MGWebServerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBAE02C0C82BC0069A49D /* MGWebServerConfiguration.swift */; };
+		502CBAE32C0C8AE40069A49D /* AudioPlaybackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBAE22C0C8AE40069A49D /* AudioPlaybackManager.swift */; };
+		502CBAE52C0C8AF90069A49D /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBAE42C0C8AF90069A49D /* BackgroundTaskManager.swift */; };
+		502CBAE72C0C8B6B0069A49D /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBAE62C0C8B6B0069A49D /* RouteManager.swift */; };
+		508F7F772C0C91B30038CB63 /* BonjourServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F7F762C0C91B30038CB63 /* BonjourServiceManager.swift */; };
+		508F7F792C0C963E0038CB63 /* BonjourClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F7F782C0C963E0038CB63 /* BonjourClientManager.swift */; };
+		508F7FAE2C0CADF40038CB63 /* BonjourService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F7FAD2C0CADF40038CB63 /* BonjourService.swift */; };
+		508F7FB02C0CAF4C0038CB63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F7FAF2C0CAF4C0038CB63 /* Utils.swift */; };
 		50A313B32C093C1000676AD9 /* MGWebServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A313B22C093C1000676AD9 /* MGWebServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50A313BC2C093C2000676AD9 /* MGWebServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A313BB2C093C2000676AD9 /* MGWebServer.swift */; };
+		50A313BD2C093C2000676AD9 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A313B92C093C2000676AD9 /* HTTPRequest.swift */; };
+		50A313BE2C093C2000676AD9 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A313BA2C093C2000676AD9 /* HTTPResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		50A313AF2C093C1000676AD9 /* MGWebServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGWebServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		502CBADE2C0C78290069A49D /* silent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silent.mp3; sourceTree = "<group>"; };
+		502CBAE02C0C82BC0069A49D /* MGWebServerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGWebServerConfiguration.swift; sourceTree = "<group>"; };
+		502CBAE22C0C8AE40069A49D /* AudioPlaybackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaybackManager.swift; sourceTree = "<group>"; };
+		502CBAE42C0C8AF90069A49D /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
+		502CBAE62C0C8B6B0069A49D /* RouteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
+		508F7F762C0C91B30038CB63 /* BonjourServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourServiceManager.swift; sourceTree = "<group>"; };
+		508F7F782C0C963E0038CB63 /* BonjourClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourClientManager.swift; sourceTree = "<group>"; };
+		508F7FAD2C0CADF40038CB63 /* BonjourService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourService.swift; sourceTree = "<group>"; };
+		508F7FAF2C0CAF4C0038CB63 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		50A313AF2C093C1000676AD9 /* WebServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A313B22C093C1000676AD9 /* MGWebServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGWebServer.h; sourceTree = "<group>"; };
+		50A313B92C093C2000676AD9 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		50A313BA2C093C2000676AD9 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
+		50A313BB2C093C2000676AD9 /* MGWebServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGWebServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +50,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		508F7F7A2C0C9A800038CB63 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				50A313BA2C093C2000676AD9 /* HTTPResponse.swift */,
+				50A313B92C093C2000676AD9 /* HTTPRequest.swift */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		508F7F7B2C0C9A940038CB63 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				502CBAE22C0C8AE40069A49D /* AudioPlaybackManager.swift */,
+				502CBAE42C0C8AF90069A49D /* BackgroundTaskManager.swift */,
+			);
+			path = Background;
+			sourceTree = "<group>";
+		};
+		508F7F7C2C0C9AC30038CB63 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				502CBAE62C0C8B6B0069A49D /* RouteManager.swift */,
+				502CBAE02C0C82BC0069A49D /* MGWebServerConfiguration.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		508F7F7D2C0C9AD00038CB63 /* Bonjour */ = {
+			isa = PBXGroup;
+			children = (
+				508F7F762C0C91B30038CB63 /* BonjourServiceManager.swift */,
+				508F7F782C0C963E0038CB63 /* BonjourClientManager.swift */,
+				508F7FAD2C0CADF40038CB63 /* BonjourService.swift */,
+			);
+			path = Bonjour;
+			sourceTree = "<group>";
+		};
+		508F7F7E2C0C9AEA0038CB63 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				502CBADE2C0C78290069A49D /* silent.mp3 */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		50A313A52C093C1000676AD9 = {
 			isa = PBXGroup;
 			children = (
@@ -37,7 +106,7 @@
 		50A313B02C093C1000676AD9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				50A313AF2C093C1000676AD9 /* MGWebServer.framework */,
+				50A313AF2C093C1000676AD9 /* WebServer.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -45,7 +114,14 @@
 		50A313B12C093C1000676AD9 /* MGWebServer */ = {
 			isa = PBXGroup;
 			children = (
+				508F7F7E2C0C9AEA0038CB63 /* Assets */,
+				508F7F7D2C0C9AD00038CB63 /* Bonjour */,
+				508F7F7C2C0C9AC30038CB63 /* Server */,
+				508F7F7B2C0C9A940038CB63 /* Background */,
+				508F7F7A2C0C9A800038CB63 /* HTTP */,
+				50A313BB2C093C2000676AD9 /* MGWebServer.swift */,
 				50A313B22C093C1000676AD9 /* MGWebServer.h */,
+				508F7FAF2C0CAF4C0038CB63 /* Utils.swift */,
 			);
 			path = MGWebServer;
 			sourceTree = "<group>";
@@ -64,9 +140,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		50A313AE2C093C1000676AD9 /* MGWebServer */ = {
+		50A313AE2C093C1000676AD9 /* WebServer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50A313B62C093C1000676AD9 /* Build configuration list for PBXNativeTarget "MGWebServer" */;
+			buildConfigurationList = 50A313B62C093C1000676AD9 /* Build configuration list for PBXNativeTarget "WebServer" */;
 			buildPhases = (
 				50A313AA2C093C1000676AD9 /* Headers */,
 				50A313AB2C093C1000676AD9 /* Sources */,
@@ -77,9 +153,9 @@
 			);
 			dependencies = (
 			);
-			name = MGWebServer;
+			name = WebServer;
 			productName = MGWebServer;
-			productReference = 50A313AF2C093C1000676AD9 /* MGWebServer.framework */;
+			productReference = 50A313AF2C093C1000676AD9 /* WebServer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -96,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 50A313A92C093C1000676AD9 /* Build configuration list for PBXProject "MGWebServer" */;
+			buildConfigurationList = 50A313A92C093C1000676AD9 /* Build configuration list for PBXProject "WebServer" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				50A313AE2C093C1000676AD9 /* MGWebServer */,
+				50A313AE2C093C1000676AD9 /* WebServer */,
 			);
 		};
 /* End PBXProject section */
@@ -119,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502CBADF2C0C78290069A49D /* silent.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +206,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A313BE2C093C2000676AD9 /* HTTPResponse.swift in Sources */,
+				508F7FAE2C0CADF40038CB63 /* BonjourService.swift in Sources */,
+				508F7F772C0C91B30038CB63 /* BonjourServiceManager.swift in Sources */,
+				50A313BC2C093C2000676AD9 /* MGWebServer.swift in Sources */,
+				502CBAE32C0C8AE40069A49D /* AudioPlaybackManager.swift in Sources */,
+				508F7F792C0C963E0038CB63 /* BonjourClientManager.swift in Sources */,
+				50A313BD2C093C2000676AD9 /* HTTPRequest.swift in Sources */,
+				508F7FB02C0CAF4C0038CB63 /* Utils.swift in Sources */,
+				502CBAE52C0C8AF90069A49D /* BackgroundTaskManager.swift in Sources */,
+				502CBAE72C0C8B6B0069A49D /* RouteManager.swift in Sources */,
+				502CBAE12C0C82BC0069A49D /* MGWebServerConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -248,7 +336,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -267,6 +355,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9874853954;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -274,6 +363,7 @@
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app requires access to the local network to discover and connect to devices.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -286,10 +376,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mortgy.MGWebServer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -300,6 +392,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9874853954;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -307,6 +400,7 @@
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app requires access to the local network to discover and connect to devices.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -319,17 +413,19 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mortgy.MGWebServer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		50A313A92C093C1000676AD9 /* Build configuration list for PBXProject "MGWebServer" */ = {
+		50A313A92C093C1000676AD9 /* Build configuration list for PBXProject "WebServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50A313B42C093C1000676AD9 /* Debug */,
@@ -338,7 +434,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50A313B62C093C1000676AD9 /* Build configuration list for PBXNativeTarget "MGWebServer" */ = {
+		50A313B62C093C1000676AD9 /* Build configuration list for PBXNativeTarget "WebServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50A313B72C093C1000676AD9 /* Debug */,
