@@ -24,7 +24,11 @@ let package = Package(
         .target(
             name: "MGWebServer",
             dependencies: [],
-            path: "Sources/MGWebServer"
+            path: "Sources/MGWebServer",
+            exclude: ["Assets"],
+            resources: [
+                .copy("Assets/silent.mp3")
+            ]
         )
     ]
 )
