@@ -12,11 +12,19 @@ import UIKit
 #endif
 
 public class BackgroundTaskManager {
-#if canImport(UIKit)
+    private var enableKeepAlive: Bool
+    
+    #if canImport(UIKit)
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var keepAliveWorkItem: DispatchWorkItem?
     
+    public init(enableKeepAlive: Bool) {
+        self.enableKeepAlive = enableKeepAlive
+    }
+    
     public func startBackgroundTask(keepAlive: @escaping () -> Void) {
+        guard enableKeepAlive else { return }
+        
         if backgroundTask != .invalid {
             endBackgroundTask()
         }
@@ -32,6 +40,8 @@ public class BackgroundTaskManager {
     }
     
     public func endBackgroundTask() {
+        guard enableKeepAlive else { return }
+        
         if backgroundTask != .invalid {
             UIApplication.shared.endBackgroundTask(backgroundTask)
             backgroundTask = .invalid
@@ -47,14 +57,19 @@ public class BackgroundTaskManager {
         }
         endBackgroundTask()
     }
-#else
+    #else
+    public init(enableKeepAlive: Bool) {
+        self.enableKeepAlive = enableKeepAlive
+    }
+    
     public func startBackgroundTask(keepAlive: @escaping () -> Void) {
         // No-op for macOS
+        guard enableKeepAlive else { return }
         keepAlive()
     }
     
     public func endBackgroundTask() {
         // No-op for macOS
     }
-#endif
+    #endif
 }

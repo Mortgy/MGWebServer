@@ -10,14 +10,19 @@ import AVFoundation
 #endif
 
 public class AudioPlaybackManager {
-#if canImport(AVFoundation) && canImport(AVAudioSession)
+    private var enableAudioPlayback: Bool
+    
+    #if canImport(AVFoundation) && canImport(AVAudioSession)
     private var audioPlayer: AVAudioPlayer?
     
-    public init() {
+    public init(enableAudioPlayback: Bool) {
+        self.enableAudioPlayback = enableAudioPlayback
         setupAudioSession()
     }
     
     public func startAudioPlayback() {
+        guard enableAudioPlayback else { return }
+        
         let frameworkBundle = Bundle(for: type(of: self))
         guard let audioPath = frameworkBundle.path(forResource: "silent", ofType: "mp3") else {
             print("Silent audio file not found in the framework bundle")
@@ -34,10 +39,13 @@ public class AudioPlaybackManager {
     }
     
     public func stopAudioPlayback() {
+        guard enableAudioPlayback else { return }
         audioPlayer?.stop()
     }
     
     private func setupAudioSession() {
+        guard enableAudioPlayback else { return }
+        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
             try AVAudioSession.sharedInstance().setActive(true)
@@ -45,9 +53,11 @@ public class AudioPlaybackManager {
             print("Failed to set up audio session: \(error)")
         }
     }
-#else
+    #else
     // No-op implementations for macOS
-    public init() {}
+    public init(enableAudioPlayback: Bool) {
+        self.enableAudioPlayback = enableAudioPlayback
+    }
     
     public func startAudioPlayback() {
         // No-op
@@ -56,5 +66,5 @@ public class AudioPlaybackManager {
     public func stopAudioPlayback() {
         // No-op
     }
-#endif
+    #endif
 }

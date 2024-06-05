@@ -24,17 +24,19 @@ public class MGWebServer: NSObject {
     private let audioPlaybackManager: AudioPlaybackManager
 #endif
     private let bonjourServiceManager: BonjourServiceManager
+    private var requestHandler: RequestHandler!
     var backgroundURLSession: URLSession?
     
     public init(configuration: MGWebServerConfiguration) {
         self.configuration = configuration
         self.routeManager = RouteManager()
-        self.backgroundTaskManager = BackgroundTaskManager()
+        self.backgroundTaskManager = BackgroundTaskManager(enableKeepAlive: configuration.enableKeepAlive)
 #if canImport(AVFoundation)
-        self.audioPlaybackManager = AudioPlaybackManager()
+        self.audioPlaybackManager = AudioPlaybackManager(enableAudioPlayback: configuration.enableKeepAlive)
 #endif
         self.bonjourServiceManager = BonjourServiceManager()
         super.init()
+        self.requestHandler = RequestHandler(routeManager: self.routeManager, server: self)
         setupBackgroundSession()
 #if canImport(UIKit)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -105,7 +107,7 @@ public class MGWebServer: NSObject {
                 }
             }
             listener?.newConnectionHandler = { [weak self] newConnection in
-                self?.handleConnection(newConnection)
+                self?.requestHandler.handleConnection(newConnection)
             }
             listener?.start(queue: .main)
         } catch {
@@ -117,50 +119,6 @@ public class MGWebServer: NSObject {
         listener?.cancel()
         listener = nil
         print("Server stopped")
-    }
-    
-    private func handleConnection(_ connection: NWConnection) {
-        connection.stateUpdateHandler = { [weak self] (newState) in
-            switch newState {
-                case .ready:
-                    print("Client connected: \(connection.endpoint)")
-                    self?.receive(on: connection)
-                case .failed(let error):
-                    print("Client connection failed: \(error)")
-                    connection.cancel()
-                default:
-                    break
-            }
-        }
-        connection.start(queue: .main)
-    }
-    
-    private func receive(on connection: NWConnection) {
-        connection.receive(minimumIncompleteLength: 1, maximumLength: 65536) { [weak self] (data, _, isComplete, error) in
-            if let data = data, !data.isEmpty {
-                self?.handleRequest(data: data, on: connection)
-            }
-            if isComplete || error != nil {
-                connection.cancel()
-            } else {
-                self?.receive(on: connection)
-            }
-        }
-    }
-    
-    private func handleRequest(data: Data, on connection: NWConnection) {
-        guard let request = HTTPRequest(data: data) else {
-            let response = HTTPResponse(statusCode: 400, headers: ["Content-Type": "text/plain"], body: "Bad Request".data(using: .utf8))
-            connection.send(content: response.buildResponse(), completion: .contentProcessed({ _ in
-                connection.cancel()
-            }))
-            return
-        }
-        
-        let response = routeManager.handleRequest(request)
-        connection.send(content: response.buildResponse(), completion: .contentProcessed({ _ in
-            connection.cancel()
-        }))
     }
     
     private func sendKeepAlivePing() {
@@ -185,7 +143,7 @@ public class MGWebServer: NSObject {
     }
     
     private func setupBackgroundSession() {
-        let configuration = URLSessionConfiguration.background(withIdentifier: "com.example.MGWebServerBackground")
+        let configuration = URLSessionConfiguration.background(withIdentifier: "\(String(describing: Bundle.main.bundleIdentifier)).MGWebServerBackground")
         backgroundURLSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 }

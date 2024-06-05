@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5001E76C2C105A99000B663C /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001E76B2C105A99000B663C /* RequestHandler.swift */; };
 		502CBADF2C0C78290069A49D /* silent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 502CBADE2C0C78290069A49D /* silent.mp3 */; };
 		502CBAE12C0C82BC0069A49D /* MGWebServerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBAE02C0C82BC0069A49D /* MGWebServerConfiguration.swift */; };
 		502CBAE32C0C8AE40069A49D /* AudioPlaybackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBAE22C0C8AE40069A49D /* AudioPlaybackManager.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5001E76B2C105A99000B663C /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		502CBADE2C0C78290069A49D /* silent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silent.mp3; sourceTree = "<group>"; };
 		502CBAE02C0C82BC0069A49D /* MGWebServerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGWebServerConfiguration.swift; sourceTree = "<group>"; };
 		502CBAE22C0C8AE40069A49D /* AudioPlaybackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaybackManager.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			children = (
 				502CBAE62C0C8B6B0069A49D /* RouteManager.swift */,
 				502CBAE02C0C82BC0069A49D /* MGWebServerConfiguration.swift */,
+				5001E76B2C105A99000B663C /* RequestHandler.swift */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			files = (
 				50A313BE2C093C2000676AD9 /* HTTPResponse.swift in Sources */,
 				508F7FAE2C0CADF40038CB63 /* BonjourService.swift in Sources */,
+				5001E76C2C105A99000B663C /* RequestHandler.swift in Sources */,
 				508F7F772C0C91B30038CB63 /* BonjourServiceManager.swift in Sources */,
 				50A313BC2C093C2000676AD9 /* MGWebServer.swift in Sources */,
 				502CBAE32C0C8AE40069A49D /* AudioPlaybackManager.swift in Sources */,
