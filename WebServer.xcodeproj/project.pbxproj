@@ -52,6 +52,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5001E76D2C105E3E000B663C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				50A313B12C093C1000676AD9 /* MGWebServer */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		508F7F7A2C0C9A800038CB63 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +109,7 @@
 		50A313A52C093C1000676AD9 = {
 			isa = PBXGroup;
 			children = (
-				50A313B12C093C1000676AD9 /* MGWebServer */,
+				5001E76D2C105E3E000B663C /* Sources */,
 				50A313B02C093C1000676AD9 /* Products */,
 			);
 			sourceTree = "<group>";
