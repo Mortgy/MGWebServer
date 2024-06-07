@@ -40,6 +40,10 @@ public class BonjourServiceManager: NSObject {
         print("Bonjour service published with IP: \(ipAddress) and device type: \(deviceType)")
     }
     
+    public func getNetService() -> NetService?{
+        return netService
+    }
+    
     public func stop() {
         netService?.stop()
         netService = nil
