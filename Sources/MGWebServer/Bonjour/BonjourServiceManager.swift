@@ -13,7 +13,7 @@ import UIKit
 #endif
 
 public class BonjourServiceManager: NSObject {
-    private var netService: NetService?
+     public var netService: NetService?
     
     public func publish(port: Int) {
 #if canImport(UIKit)
@@ -38,10 +38,6 @@ public class BonjourServiceManager: NSObject {
         netService?.publish()
         
         print("Bonjour service published with IP: \(ipAddress) and device type: \(deviceType)")
-    }
-    
-    public func getNetService() -> NetService?{
-        return netService
     }
     
     public func stop() {
