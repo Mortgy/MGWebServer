@@ -30,7 +30,7 @@ public class BonjourClientManager: NSObject {
         for service in discoveredServices {
             if let hostName = service.hostName  {
                 let urlString = "http://\(hostName):\(service.port)"
-                let txtRecord = service.txtRecordData().flatMap { parseTXTRecord(data: $0) }
+                let txtRecord = service.txtRecordData().flatMap { Utils.parseTXTRecord(data: $0) }
                 let deviceType = txtRecord?["deviceType"] ?? "Unknown"
                 let bonjourService = BonjourService(name: service.name, url: urlString, ipAddress: hostName, deviceType: deviceType)
                 servicesInfo.append(bonjourService)

@@ -22,11 +22,11 @@ public class BonjourServiceManager: NSObject {
         let serviceName = Host.current().localizedName ?? "Unknown"
 #endif
         
-        guard let ipAddress = getIPAddress() else {
+        guard let ipAddress = Utils.getIPAddress() else {
             print("Failed to get IP address")
             return
         }
-        let deviceType = getDeviceType()
+        let deviceType = Utils.getDeviceType()
         
         let txtRecord: [String: Data] = [
             "deviceType": deviceType.data(using: .utf8) ?? Data()
