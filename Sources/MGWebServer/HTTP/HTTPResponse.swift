@@ -31,7 +31,7 @@ public struct HTTPResponse {
         return responseData
     }
     
-    private func statusDescription() -> String {
+    public func statusDescription() -> String {
         switch statusCode {
             case 200: return "OK"
             case 400: return "Bad Request"
