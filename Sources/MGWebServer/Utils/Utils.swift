@@ -9,7 +9,7 @@ import Foundation
 import SystemConfiguration.CaptiveNetwork
 
 #if canImport(UIKit)
-import UIKit
+    import UIKit
 #endif
 
 public struct Utils {
@@ -40,10 +40,10 @@ public struct Utils {
     }
 
     public static func getDeviceType() -> String {
-    #if targetEnvironment(macCatalyst) || os(macOS)
-        return "macOS"
-    #else
-        switch UIDevice.current.userInterfaceIdiom {
+        #if targetEnvironment(macCatalyst) || os(macOS)
+            return "macOS"
+        #else
+            switch UIDevice.current.userInterfaceIdiom {
             case .phone:
                 return "iOS"
             case .pad:
@@ -52,14 +52,14 @@ public struct Utils {
                 return "macOS"
             default:
                 return "Unknown"
-        }
-    #endif
+            }
+        #endif
     }
 
     public static func parseTXTRecord(data: Data) -> [String: String] {
         var result = [String: String]()
         let dict = NetService.dictionary(fromTXTRecord: data)
-        
+
         for (key, value) in dict {
             if let valueData = value as Data?,
                let valueString = String(data: valueData, encoding: .utf8) {
@@ -69,4 +69,13 @@ public struct Utils {
         return result
     }
 
+    public static func repeatTask(interval: TimeInterval, task: @escaping () -> Void) {
+        // Execute the task
+        task()
+
+        // Schedule the next execution after the specified interval
+        DispatchQueue.global().asyncAfter(deadline: .now() + interval) {
+            repeatTask(interval: interval, task: task)
+        }
+    }
 }
