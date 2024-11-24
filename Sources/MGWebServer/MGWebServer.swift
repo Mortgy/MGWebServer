@@ -26,6 +26,7 @@ public class MGWebServer: NSObject {
     private let bonjourServiceManager: BonjourServiceManager
     private var requestHandler: RequestHandler!
     var backgroundURLSession: URLSession?
+    private var keepAliveTimer: Timer?
 
     public init(configuration: MGWebServerConfiguration) {
         self.configuration = configuration
@@ -50,6 +51,11 @@ public class MGWebServer: NSObject {
         }
         startListener(onStarted: onStarted)
         if configuration.enableKeepAlive {
+            // Start periodic timer for keep-alive pings
+            keepAliveTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+                self?.sendKeepAlivePing()
+            }
+            
             backgroundTaskManager.startBackgroundTask { [weak self] in
                 self?.sendKeepAlivePing()
             }
@@ -69,6 +75,8 @@ public class MGWebServer: NSObject {
             bonjourServiceManager.stop()
         }
         if configuration.enableKeepAlive {
+            keepAliveTimer?.invalidate()
+            keepAliveTimer = nil
             backgroundTaskManager.endBackgroundTask()
             #if canImport(AVFoundation)
                 audioPlaybackManager.stopAudioPlayback()
@@ -155,9 +163,7 @@ public class MGWebServer: NSObject {
 
 extension MGWebServer: URLSessionDelegate, URLSessionTaskDelegate {
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if error == nil {
-            sendKeepAlivePing()
-        } else {
+        if (error != nil) {
             print("Background task failed: \(error?.localizedDescription ?? "unknown error")")
         }
     }
