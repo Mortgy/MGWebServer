@@ -27,9 +27,13 @@ public class MGWebServer: NSObject {
     private var requestHandler: RequestHandler!
     var backgroundURLSession: URLSession?
     private var keepAliveTimer: Timer?
+    var onStarted: (() -> Void)?
+    var onStopped: (() -> Void)?
 
-    public init(configuration: MGWebServerConfiguration) {
+    public init(configuration: MGWebServerConfiguration, onStarted: (() -> Void)?, onStopped: (() -> Void)?) {
         self.configuration = configuration
+        self.onStarted = onStarted
+        self.onStopped = onStopped
         routeManager = RouteManager()
         backgroundTaskManager = BackgroundTaskManager(enableKeepAlive: configuration.enableKeepAlive)
         #if canImport(AVFoundation)
@@ -45,17 +49,17 @@ public class MGWebServer: NSObject {
         #endif
     }
 
-    public func start(onStarted: ((Bool) -> Void)?) {
+    public func start() {
         routeManager.addRoute(path: "/ping") { _ in
             HTTPResponse(statusCode: 200, headers: ["Content-Type": "text/plain"], body: "Pong".data(using: .utf8))
         }
-        startListener(onStarted: onStarted)
+        startListener()
         if configuration.enableKeepAlive {
             // Start periodic timer for keep-alive pings
             keepAliveTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
                 self?.sendKeepAlivePing()
             }
-            
+
             backgroundTaskManager.startBackgroundTask { [weak self] in
                 self?.sendKeepAlivePing()
             }
@@ -101,7 +105,7 @@ public class MGWebServer: NSObject {
         routeManager.addStaticRoute(forBasePath: basePath, directoryPath: directoryPath)
     }
 
-    private func startListener(onStarted: ((Bool) -> Void)?) {
+    private func startListener() {
         do {
             let parameters = NWParameters.tcp
             listener = try NWListener(using: parameters, on: NWEndpoint.Port(rawValue: configuration.port)!)
@@ -112,7 +116,7 @@ public class MGWebServer: NSObject {
                     if self?.configuration.enableBonjour == true {
                         self?.bonjourServiceManager.publish(port: Int(self?.configuration.port ?? 0))
                     }
-                    onStarted?(true)
+                    self?.onStarted?()
                 case let .failed(error):
                     print("Server failed with error: \(error)")
                 default:
@@ -131,6 +135,7 @@ public class MGWebServer: NSObject {
     private func stopListener() {
         listener?.cancel()
         listener = nil
+        onStopped?()
         print("Server stopped")
     }
 
@@ -163,7 +168,7 @@ public class MGWebServer: NSObject {
 
 extension MGWebServer: URLSessionDelegate, URLSessionTaskDelegate {
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if (error != nil) {
+        if error != nil {
             print("Background task failed: \(error?.localizedDescription ?? "unknown error")")
         }
     }
